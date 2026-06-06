@@ -25,11 +25,6 @@ from sklearn.preprocessing import StandardScaler
 from warnings import filterwarnings
 warnings.filterwarnings("ignore")
 
-mlflow.set_tracking_uri("http://127.0.0.1:5000/")
-
-# Set URI & experiment
-dagshub.init(repo_owner='hkarlesster', repo_name='membangun_sistem_ml', mlflow=True)
-
 # Create a new MLflow Experiment
 mlflow.set_experiment("Heart Disease Prediction Experiment")
 
