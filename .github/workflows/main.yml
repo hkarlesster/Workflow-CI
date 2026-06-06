@@ -48,14 +48,31 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-      
-          # Stage the untracked file
-          git add artefak/
-      
-          # Only commit and push if there are actual changes staged
-          if ! git diff --cached --quiet; then
-            git commit -m "Update preprocessed data"
-            git push
-          else
-            echo "No changes detected. Skipping commit."
+          
+          # Check if RUN_ID exists in the environment
+          if [ -z "$RUN_ID" ]; then
+            echo "Error: RUN_ID is not set. Exiting step."
+            exit 1
           fi
+          
+          echo "Processing run artifacts for ID: $RUN_ID"
+          
+          # Buat folder terstruktur untuk run
+          mkdir -p saved_runs/$RUN_ID
+          
+          # Salin hasil run jika folder mlruns ada
+          if [ -d "mlruns/0/$RUN_ID" ]; then
+            cp -r mlruns/0/$RUN_ID/* saved_runs/$RUN_ID/
+          else
+            echo "Source directory mlruns/0/$RUN_ID not found!"
+            exit 1
+          fi
+          
+          # Tambahkan metadata
+          echo "Run ID: $RUN_ID" > saved_runs/$RUN_ID/metadata.txt
+          echo "Date: $(date)" >> saved_runs/$RUN_ID/metadata.txt
+          
+          # Commit dan push
+          git add saved_runs/
+          git commit -m "Save artifacts from run $RUN_ID [skip ci]"
+          git push origin artifacts --force
