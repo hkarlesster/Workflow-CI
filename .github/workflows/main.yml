@@ -75,4 +75,4 @@ jobs:
           # Commit dan push
           git add saved_runs/
           git commit -m "Save artifacts from run $RUN_ID [skip ci]"
-          git push main
+          git push origin main
