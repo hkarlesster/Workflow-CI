@@ -1,0 +1,15 @@
+artifact_uri: file:///home/runner/work/Workflow-CI/Workflow-CI/mlruns/0/16132b1a1a684893a26c6f5c2b85796d/artifacts
+end_time: 1780759209466
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 16132b1a1a684893a26c6f5c2b85796d
+run_name: grandiose-shark-897
+run_uuid: 16132b1a1a684893a26c6f5c2b85796d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1780759194695
+status: 3
+tags: []
+user_id: runner
