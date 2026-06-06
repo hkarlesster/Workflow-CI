@@ -45,17 +45,17 @@ jobs:
           echo "Latest run_id: $RUN_ID"
           
       - name: Commit and push preprocessed files
-      run: |
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
-    
-        # Stage the untracked file
-        git add artefak/
-    
-        # Only commit and push if there are actual changes staged
-        if ! git diff --cached --quiet; then
-          git commit -m "Update preprocessed data"
-          git push
-        else
-          echo "No changes detected. Skipping commit."
-        fi
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+      
+          # Stage the untracked file
+          git add artefak/
+      
+          # Only commit and push if there are actual changes staged
+          if ! git diff --cached --quiet; then
+            git commit -m "Update preprocessed data"
+            git push
+          else
+            echo "No changes detected. Skipping commit."
+          fi
