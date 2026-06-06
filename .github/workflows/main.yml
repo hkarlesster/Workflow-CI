@@ -44,18 +44,6 @@ jobs:
           echo "RUN_ID=$RUN_ID" >> $GITHUB_ENV
           echo "Latest run_id: $RUN_ID"
           
-      - name: Install Python dependencies
-        run: |
-          pip install --upgrade google-auth google-auth-oauthlib google-auth-httplib2 google-api-python-client
-        
-      - name: Upload to Google Drive
-        env:
-          GDRIVE_CREDENTIALS: ${{ secrets.GDRIVE_CREDENTIALS }}  # Mengambil kredensial dari GitHub Secrets
-          GDRIVE_FOLDER_ID: ${{ secrets.GDRIVE_FOLDER_ID }}  # Mengambil kredensial dari GitHub Secrets
-        run: |
-          python MLproject/upload_to_gdrive.py
-
-          
       # Build Docker Model
       - name: Build Docker Model
         run: |
